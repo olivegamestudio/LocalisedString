@@ -4,32 +4,37 @@ namespace LocalisedString;
 
 public class LocaleString
 {
-    readonly Dictionary<CultureInfo, string> _localeStrings = new();
+    public Dictionary<CultureInfo, string> Strings { get; set; } = new();
 
     public Task AddTranslation(CultureInfo culture, string value)
     {
-        _localeStrings.Add(culture, value);
+        if (Strings.ContainsKey(culture))
+        {
+            throw new LocaleStringException();
+        }
+
+        Strings.Add(culture, value);
         return Task.CompletedTask;
     }
 
     public string GetLocalisedString(CultureInfo culture)
     {
-        if (_localeStrings.ContainsKey(culture))
+        if (Strings.ContainsKey(culture))
         {
             // an exact match to the culture e.g. en-GB
-            return _localeStrings[culture];
+            return Strings[culture];
         }
 
-        if (_localeStrings.ContainsKey(culture.Parent))
+        if (Strings.ContainsKey(culture.Parent))
         {
             // an exact match to the parent culture e.g. en
-            return _localeStrings[culture.Parent];
+            return Strings[culture.Parent];
         }
 
-        if (_localeStrings.ContainsKey(CultureInfo.InvariantCulture))
+        if (Strings.ContainsKey(CultureInfo.InvariantCulture))
         {
             // catch-all string.
-            return _localeStrings[CultureInfo.InvariantCulture];
+            return Strings[CultureInfo.InvariantCulture];
         }
 
         // no translation.

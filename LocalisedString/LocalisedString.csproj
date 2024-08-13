@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>Simon Jefferies</Authors>
 		<Company>Simon Jefferies</Company>
-		<Description>This package contains a LOcaleString class which is useful for getting localised strings.</Description>
+		<Description>This package contains a LocaleString class which is useful for getting localised strings.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
