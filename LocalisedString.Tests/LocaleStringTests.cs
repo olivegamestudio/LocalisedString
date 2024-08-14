@@ -1,77 +1,86 @@
 using System.Globalization;
 using Musts;
+using Utility;
 
 namespace LocalisedString.Tests;
 
 public class LocaleStringTests
 {
     [Test]
-    public void EnglishGB_Returns_EnglishText_FromRealSetup()
+    public async Task EnglishGB_Returns_EnglishText_FromRealSetup()
     {
         LocaleString s = new();
-        s.AddTranslation(new CultureInfo("en"), "EnglishText");
-        s.AddTranslation(new CultureInfo("fr"), "FrenchText");
-        s.AddTranslation(new CultureInfo("en-GB"), "EnglishGBText");
-        s.AddTranslation(new CultureInfo("fr-fr"), "FrenchFRText");
-        string result = s.GetLocalisedString(new CultureInfo("en-GB"));
+        await s.AddTranslation(new CultureInfo("en"), "EnglishText");
+        await s.AddTranslation(new CultureInfo("fr"), "FrenchText");
+        await s.AddTranslation(new CultureInfo("en-GB"), "EnglishGBText");
+        await s.AddTranslation(new CultureInfo("fr-fr"), "FrenchFRText");
+        
+        string text = s.GetLocalisedString(new CultureInfo("en-GB"));
 
-        result.MustBeSame("EnglishGBText");
+        text.MustBeSame("EnglishGBText");
     }
 
     [Test]
-    public void AddingTranslationTwice_ThrowsException()
+    public async Task AddingTranslationTwice_ReturnsFailue()
     {
         LocaleString s = new();
-        s.AddTranslation(new CultureInfo("en"), "EnglishText");
-        Assert.Throws<LocaleStringException>(() => s.AddTranslation(new CultureInfo("en"), "EnglishText"));
+        Result result = await s.AddTranslation(new CultureInfo("en"), "EnglishText");
+        result.MustBeSuccess();
+
+        result = await s.AddTranslation(new CultureInfo("en"), "EnglishText");
+        result.MustBeFailure();
     }
 
     [Test]
     public void English_Returns_EmptyString()
     {
         LocaleString s = new();
-        string result = s.GetLocalisedString(new CultureInfo("en"));
-
-        result.MustBeNullOrEmpty();
+        string text = s.GetLocalisedString(new CultureInfo("en"));
+        text.MustBeNullOrEmpty();
     }
 
     [Test]
-    public void EnglishGB_Returns_EnglishText()
+    public async Task EnglishGB_Returns_EnglishText()
     {
         LocaleString s = new();
-        s.AddTranslation(new CultureInfo("en"), "EnglishText");
-        string result = s.GetLocalisedString(new CultureInfo("en-GB"));
+        Result result = await s.AddTranslation(new CultureInfo("en"), "EnglishText");
+        string text = s.GetLocalisedString(new CultureInfo("en-GB"));
 
-        result.MustBeSame("EnglishText");
+        result.MustBeSuccess();
+        text.MustBeSame("EnglishText");
     }
 
     [Test]
-    public void EnglishGB_Returns_EnglishGBText()
+    public async Task EnglishGB_Returns_EnglishGBText()
     {
         LocaleString s = new();
-        s.AddTranslation(new CultureInfo("en-GB"), "EnglishGBText");
-        string result = s.GetLocalisedString(new CultureInfo("en-GB"));
+        Result result = await s.AddTranslation(new CultureInfo("en-GB"), "EnglishGBText");
+        string text = s.GetLocalisedString(new CultureInfo("en-GB"));
 
-        result.MustBeSame("EnglishGBText");
+        result.MustBeSuccess();
+        text.MustBeSame("EnglishGBText");
     }
 
     [Test]
-    public void English_Returns_EnglishText()
+    public async Task English_Returns_EnglishText()
     {
         LocaleString s = new();
-        s.AddTranslation(new CultureInfo("en"), "EnglishText");
-        string result = s.GetLocalisedString(new CultureInfo("en"));
+        Result result = await s.AddTranslation(new CultureInfo("en"), "EnglishText");
+        
+        string text = s.GetLocalisedString(new CultureInfo("en"));
 
-        result.MustBeSame("EnglishText");
+        result.MustBeSuccess();
+        text.MustBeSame("EnglishText");
     }
 
     [Test]
-    public void English_Returns_InvariantText()
+    public async Task English_Returns_InvariantText()
     {
         LocaleString s = new();
-        s.AddTranslation(CultureInfo.InvariantCulture, "InvariantText");
-        string result = s.GetLocalisedString(new CultureInfo("en"));
+        Result result = await s.AddTranslation(CultureInfo.InvariantCulture, "InvariantText");
+        string text = s.GetLocalisedString(new CultureInfo("en"));
 
-        result.MustBeSame("InvariantText");
+        result.MustBeSuccess();
+        text.MustBeSame("InvariantText");
     }
 }
