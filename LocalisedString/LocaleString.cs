@@ -1,40 +1,41 @@
 ﻿using System.Globalization;
+using Utility;
 
 namespace LocalisedString;
 
 public class LocaleString
 {
-    public Dictionary<CultureInfo, string> Strings { get; set; } = new();
+    public List<LocaleStringItem> Strings { get; set; } = new();
 
-    public Task AddTranslation(CultureInfo culture, string value)
+    public Task<Result> AddTranslation(CultureInfo culture, string value)
     {
-        if (Strings.ContainsKey(culture))
+        if (Strings.Any(it => Equals(it.Culture, culture)))
         {
-            throw new LocaleStringException();
+            return Task.FromResult(Result.Fail($"The culture {culture} already exists."));
         }
 
-        Strings.Add(culture, value);
-        return Task.CompletedTask;
+        Strings.Add(new LocaleStringItem { Culture = culture, Text = value });
+        return Task.FromResult(Result.Ok());
     }
 
     public string GetLocalisedString(CultureInfo culture)
     {
-        if (Strings.ContainsKey(culture))
+        if (Strings.Any(it => Equals(it.Culture, culture)))
         {
             // an exact match to the culture e.g. en-GB
-            return Strings[culture];
+            return Strings.First(it => Equals(it.Culture, culture)).Text;
         }
 
-        if (Strings.ContainsKey(culture.Parent))
+        if (Strings.Any(it => Equals(it.Culture, culture.Parent)))
         {
             // an exact match to the parent culture e.g. en
-            return Strings[culture.Parent];
+            return Strings.First(it => Equals(it.Culture, culture.Parent)).Text;
         }
 
-        if (Strings.ContainsKey(CultureInfo.InvariantCulture))
+        if (Strings.Any(it => Equals(it.Culture, CultureInfo.InvariantCulture)))
         {
             // catch-all string.
-            return Strings[CultureInfo.InvariantCulture];
+            return Strings.First(it => it.Culture == CultureInfo.InvariantCulture).Text;
         }
 
         // no translation.
