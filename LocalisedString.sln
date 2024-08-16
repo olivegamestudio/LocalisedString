@@ -1,16 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
+# 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalisedString", "LocalisedString\LocalisedString.csproj", "{06BBAAA3-D4D6-4FF5-9253-0D808E844231}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalisedString.Tests", "LocalisedString.Tests\LocalisedString.Tests.csproj", "{CCD060B1-61B1-4E5C-8184-2F2717D83EDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalisedString.Controls.WPF", "LocalisedString.Controls.WPF\LocalisedString.Controls.WPF.csproj", "{5F6A7B25-9D6D-4C69-8F76-3418BD616EA8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalisedString.ViewModels", "LocalisedString.ViewModels\LocalisedString.ViewModels.csproj", "{8E9E7D49-680F-4FFF-B4A1-09E93B819A16}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalisedString.Tool", "LocalisedString.Tool\LocalisedString.Tool.csproj", "{4F1A7CEF-6294-4B8A-9AAD-79230AB56BD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalisedString.ViewModels", "LocalisedString.ViewModels\LocalisedString.ViewModels.csproj", "{8E9E7D49-680F-4FFF-B4A1-09E93B819A16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,18 +22,10 @@ Global
 		{CCD060B1-61B1-4E5C-8184-2F2717D83EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCD060B1-61B1-4E5C-8184-2F2717D83EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCD060B1-61B1-4E5C-8184-2F2717D83EDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F6A7B25-9D6D-4C69-8F76-3418BD616EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F6A7B25-9D6D-4C69-8F76-3418BD616EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F6A7B25-9D6D-4C69-8F76-3418BD616EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F6A7B25-9D6D-4C69-8F76-3418BD616EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E9E7D49-680F-4FFF-B4A1-09E93B819A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E9E7D49-680F-4FFF-B4A1-09E93B819A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E9E7D49-680F-4FFF-B4A1-09E93B819A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E9E7D49-680F-4FFF-B4A1-09E93B819A16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F1A7CEF-6294-4B8A-9AAD-79230AB56BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F1A7CEF-6294-4B8A-9AAD-79230AB56BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F1A7CEF-6294-4B8A-9AAD-79230AB56BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F1A7CEF-6294-4B8A-9AAD-79230AB56BD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
