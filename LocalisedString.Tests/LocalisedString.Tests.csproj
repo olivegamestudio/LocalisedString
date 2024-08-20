@@ -14,17 +14,11 @@
 		<PackageReference Include="coverlet.collector" Version="*" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="*" />
 		<PackageReference Include="Musts" Version="*" />
-		<PackageReference Include="NUnit" Version="3.*" />
-		<PackageReference Include="NUnit.Analyzers" Version="3.*" />
-		<PackageReference Include="NUnit3TestAdapter" Version="4.*" />
+		<PackageReference Include="XUnit" Version="*" />
 	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LocalisedString\LocalisedString.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Using Include="NUnit.Framework" />
   </ItemGroup>
 
 </Project>

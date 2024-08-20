@@ -9,33 +9,33 @@ public class LocaleString
 
     public Task<Result> AddTranslation(CultureInfo culture, string value)
     {
-        if (Strings.Any(it => Equals(it.Culture, culture)))
+        if (Strings.Any(it => Equals(it.Culture, culture.ToString())))
         {
             return Task.FromResult(Result.Fail($"The culture {culture} already exists."));
         }
 
-        Strings.Add(new LocaleStringItem { Culture = culture, Text = value });
+        Strings.Add(new LocaleStringItem { Culture = culture.ToString(), Text = value });
         return Task.FromResult(Result.Ok());
     }
 
     public string GetLocalisedString(CultureInfo culture)
     {
-        if (Strings.Any(it => Equals(it.Culture, culture)))
+        if (Strings.Any(it => Equals(it.Culture, culture.ToString())))
         {
             // an exact match to the culture e.g. en-GB
-            return Strings.First(it => Equals(it.Culture, culture)).Text;
+            return Strings.First(it => Equals(it.Culture, culture.ToString())).Text;
         }
 
-        if (Strings.Any(it => Equals(it.Culture, culture.Parent)))
+        if (Strings.Any(it => Equals(it.Culture, culture.Parent.ToString())))
         {
             // an exact match to the parent culture e.g. en
-            return Strings.First(it => Equals(it.Culture, culture.Parent)).Text;
+            return Strings.First(it => Equals(it.Culture, culture.Parent.ToString())).Text;
         }
 
-        if (Strings.Any(it => Equals(it.Culture, CultureInfo.InvariantCulture)))
+        if (Strings.Any(it => Equals(it.Culture, CultureInfo.InvariantCulture.ToString())))
         {
             // catch-all string.
-            return Strings.First(it => it.Culture == CultureInfo.InvariantCulture).Text;
+            return Strings.First(it => it.Culture == CultureInfo.InvariantCulture.ToString()).Text;
         }
 
         // no translation.
