@@ -1,12 +1,14 @@
 using System.Globalization;
+using System.Text.Json;
 using Musts;
 using Utility;
+using Xunit;
 
 namespace LocalisedString.Tests;
 
 public class LocaleStringTests
 {
-    [Test]
+    [Fact]
     public async Task EnglishGB_Returns_EnglishText_FromRealSetup()
     {
         LocaleString s = new();
@@ -14,13 +16,13 @@ public class LocaleStringTests
         await s.AddTranslation(new CultureInfo("fr"), "FrenchText");
         await s.AddTranslation(new CultureInfo("en-GB"), "EnglishGBText");
         await s.AddTranslation(new CultureInfo("fr-fr"), "FrenchFRText");
-        
+
         string text = s.GetLocalisedString(new CultureInfo("en-GB"));
 
         text.MustBeSame("EnglishGBText");
     }
 
-    [Test]
+    [Fact]
     public async Task AddingTranslationTwice_ReturnsFailue()
     {
         LocaleString s = new();
@@ -31,7 +33,7 @@ public class LocaleStringTests
         result.MustBeFailure();
     }
 
-    [Test]
+    [Fact]
     public void English_Returns_EmptyString()
     {
         LocaleString s = new();
@@ -39,7 +41,7 @@ public class LocaleStringTests
         text.MustBeNullOrEmpty();
     }
 
-    [Test]
+    [Fact]
     public async Task EnglishGB_Returns_EnglishText()
     {
         LocaleString s = new();
@@ -50,7 +52,7 @@ public class LocaleStringTests
         text.MustBeSame("EnglishText");
     }
 
-    [Test]
+    [Fact]
     public async Task EnglishGB_Returns_EnglishGBText()
     {
         LocaleString s = new();
@@ -61,7 +63,7 @@ public class LocaleStringTests
         text.MustBeSame("EnglishGBText");
     }
 
-    [Test]
+    [Fact]
     public async Task English_Returns_EnglishText()
     {
         LocaleString s = new();
@@ -73,7 +75,7 @@ public class LocaleStringTests
         text.MustBeSame("EnglishText");
     }
 
-    [Test]
+    [Fact]
     public async Task English_Returns_InvariantText()
     {
         LocaleString s = new();
