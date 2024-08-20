@@ -8,7 +8,7 @@ public partial class LocaleStringViewModel : ObservableObject<LocaleStringItem>
 {
     public LocaleStringViewModel(LocaleStringItem item) : base(item)
     {
-        Culture = item.Culture;
+        Culture = new CultureInfo(item.Culture);
         Text = item.Text;
     }
 
@@ -17,7 +17,7 @@ public partial class LocaleStringViewModel : ObservableObject<LocaleStringItem>
 
     partial void OnCultureChanged(CultureInfo value)
     {
-        Model.Culture = value;
+        Model.Culture = value.ToString();
     }
 
     [ObservableProperty]
