@@ -23,11 +23,11 @@ public class LocaleString
     {
         if (Strings.Any(it => Equals(it.Culture, culture.ToString())))
         {
-            return Task.FromResult(Result.Fail($"The culture {culture} already exists."));
+            return Task.FromResult((Result)ErrorResult.Fail($"The culture {culture} already exists."));
         }
 
         Strings.Add(new LocaleStringItem { Culture = culture.ToString(), Text = value });
-        return Task.FromResult(Result.Ok());
+        return Task.FromResult<Result>(OkResult.Ok());
     }
 
     /// <summary>
